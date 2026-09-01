@@ -43,8 +43,8 @@ export default async function askQuestion(userQuery) {
     contents: systemPrompt,
   });
 
-  console.log(response.text)
-//   return {AI_Summary:response.text}
+  // console.log(response.text);
+  return { AI_Summary: response.text, releventFiles };
 }
 
-askQuestion("Where is auth files?");
+// askQuestion("Where is auth files?");

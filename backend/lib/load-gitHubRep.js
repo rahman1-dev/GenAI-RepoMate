@@ -20,7 +20,7 @@ export default async function loadGithubRepo(gitHubUrl, gitHubToken) {
   });
 
   const docsArr = await loader.load();
-  //   console.log(docArr);
+  // console.log(docArr);
   return docsArr;
 }
 
