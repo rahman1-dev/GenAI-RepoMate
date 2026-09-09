@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Card from "./Card";
 import axios from "axios";
 import LoadingAnimation from "./LoadingAnimation";
+import { useNavigate } from "react-router-dom";
 
 const Body = () => {
+  const navigate = useNavigate();
   const [gitHubUrl, setGitHubUrl] = useState("");
   const [responseOfIndex, setResponseOfIndex] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,6 +21,10 @@ const Body = () => {
       setLoading(false);
       console.log(response?.data);
       setResponseOfIndex(response?.data);
+
+      //Go to Ask question page
+      navigate("/askquestion");
+
       // console.log(response.data.msg) Repo indexed successfully
     } catch (error) {
       console.log("Something went wrong!", error.message);
