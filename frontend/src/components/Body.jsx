@@ -12,14 +12,21 @@ const Body = () => {
 
   //  indexing the repo
   const indexRepo = async () => {
+    let url = gitHubUrl.trim();
+
+    if (!url) {
+      return;
+    }
+
     console.log("Indexing the rep...");
     setLoading(true);
     try {
       const response = await axios.post("http://localhost:8080/add-repo", {
-        gitHubUrl,
+        gitHubUrl: url,
       });
-      setLoading(false);
+      // setLoading(false);
       console.log(response?.data);
+
       setResponseOfIndex(response?.data);
 
       //Go to Ask question page
@@ -28,6 +35,8 @@ const Body = () => {
       // console.log(response.data.msg) Repo indexed successfully
     } catch (error) {
       console.log("Something went wrong!", error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -71,14 +80,7 @@ const Body = () => {
       {/* <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <Card />
         <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+       
       </div> */}
 
       {loading ? (

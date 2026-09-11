@@ -1,7 +1,10 @@
 import express from "express";
 import indexRepo from "./lib/indexRepo.js";
 import askQuestion from "./lib/askQuestion.js";
-import cors from 'cors'
+import cors from "cors";
+import signupRoutes from "./routes/signup.routes.js";
+import signinRoutes from "./routes/signin.routes.js";
+import connectDb from "./config/db.js";
 
 const app = express();
 app.use(express.json());
@@ -27,6 +30,11 @@ app.post("/askQuery", async (req, res) => {
     releventFiles,
   });
 });
+
+connectDb();
+
+app.use("/api/auth", signupRoutes);
+app.use("/api/auth", signinRoutes);
 
 app.listen("8080", () => {
   console.log("server is listening...");
