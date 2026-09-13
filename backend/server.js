@@ -4,8 +4,8 @@ import askQuestion from "./lib/askQuestion.js";
 import cors from "cors";
 import signupRoutes from "./routes/signup.routes.js";
 import signinRoutes from "./routes/signin.routes.js";
+import profileRoutes from "./routes/profile.routes.js";
 import connectDb from "./config/db.js";
-import { getProfile } from "./controllers/profileController.js";
 
 const app = express();
 app.use(express.json());
@@ -44,8 +44,7 @@ connectDb();
 
 app.use("/api/auth", signupRoutes);
 app.use("/api/auth", signinRoutes);
-
-app.use("/profile", getProfile);
+app.use("/profile", profileRoutes);
 
 app.listen("8080", () => {
   console.log("server is listening...");

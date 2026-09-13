@@ -17,7 +17,10 @@ const Header = () => {
           >
             Home
           </Link>
-          <Link className="cursor-pointer transition-colors hover:text-blue-600">
+          <Link
+            to="/about"
+            className="cursor-pointer transition-colors hover:text-blue-600"
+          >
             About
           </Link>
           <Link className="cursor-pointer transition-colors hover:text-blue-600">
@@ -27,9 +30,18 @@ const Header = () => {
             to="/signup"
             className="cursor-pointer transition-colors hover:text-blue-600"
           >
-            SingUp/SingIn
+            SingUp
           </Link>
-          <Link className="cursor-pointer transition-colors hover:text-blue-600">
+          <Link
+            to="/signin"
+            className="cursor-pointer transition-colors hover:text-blue-600"
+          >
+            SingIn
+          </Link>
+          <Link
+            to="/account"
+            className="cursor-pointer transition-colors hover:text-blue-600"
+          >
             Account
           </Link>
         </nav>

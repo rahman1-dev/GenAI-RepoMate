@@ -1,30 +1,26 @@
-import express from "express";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 dotenv.config();
 
-export const authMidleware = (req, res, next) => {
+export const authMiddleware = (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
 
-    if (!authHeader) {
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res.status(401).json({ msg: "Token not provided" });
     }
 
-    const token = authHeader.split(" ")[1];
+    const token = authHeader.slice(7).trim();
 
     if (!token) {
-      return res.status(401).json({ msg: "Invalid user" });
+      return res.status(401).json({ msg: "Invalid token" });
     }
 
-    const payload = token.verify(token, process.env.JWT_SECRET);
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Store decoded user information in req.user
     req.user = payload;
-
-    // Continue to the next middleware/controller
     next();
   } catch (error) {
-    res.status(401).json({ msg: "Invalid or expired token" });
+    return res.status(401).json({ msg: "Invalid or expired token" });
   }
 };

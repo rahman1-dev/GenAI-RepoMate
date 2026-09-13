@@ -28,7 +28,7 @@ export const signin = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { userid: foundUser._id, email: foundUser.email },
+      { userId: foundUser._id.toString(), email: foundUser.email },
       process.env.JWT_SECRET,
       { expiresIn: "1d" },
     );

@@ -2,7 +2,7 @@ import UserModel from "../models/User.js";
 
 export const getProfile = async (req, res) => {
   try {
-    const userId = req.user.userid;
+    const userId = req.user.userId;
 
     const userProfile = await UserModel.findById(userId).select("-password");
 
